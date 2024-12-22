@@ -1,0 +1,548 @@
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* CSS for the Gallery Section */
+/* Lightbox */
+/* Apply a blur effect to the background when lightbox is open */
+/* Main App container */
+.App {
+  transition: filter 0.5s ease; /* Smooth transition for the blur effect */
+}
+
+/* Add blur effect when the lightbox is open */
+.App.blur {
+  filter: blur(8px); /* Adjust the blur intensity */
+}
+
+/* Lightbox container */
+.lightbox {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it appears above everything */
+  transition: opacity 0.3s ease; /* Smooth fade-in/out for the lightbox */
+}
+
+.lightbox.open {
+  display: flex; /* Show lightbox when open */
+  opacity: 1; /* Fully visible */
+}
+
+/* Smooth zoom effect for the image */
+.lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  transform: scale(1);
+  transition: transform 0.8s ease-in-out; /* Smooth zoom effect */
+}
+
+/* Zoom-in when the lightbox is open */
+.lightbox.open img {
+  transform: scale(1.2);
+}
+
+/* Close button in the lightbox */
+.lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Debugging visual guide for gallery images */
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  max-width: 1100px;
+  
+}
+.gallery h2{
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.gallery-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+.gallery-image:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+.navbar {
+  
+  position: fixed; /* Fixes the navbar at the top */
+  top: 0; /* Ensures it's at the very top of the viewport */
+  left: 0; /* Ensures alignment from the left */
+  width: 97%; /* Makes the navbar span the full width */
+  z-index: 100; /* Ensures the navbar stays above other elements */
+  background-color: #f5f5f5; /* Retain your original background color */
+  border: 2px solid #000; /* Border for the navbar */
+  border-radius: 30px; /* Rounded corners */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  
+  margin-top: 5px;
+  transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
+}
+
+body {
+  padding-top: 80px; /* Adjust based on your navbar's height */
+}
+@media (max-width: 768px) {
+  .navbar {
+      padding: 10px;
+      border-radius: 20px;
+
+  }
+  .menu-toggle {
+    display: flex; /* Show the toggle button */
+    flex-direction: column; /* Stack the bars vertically */
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    cursor: pointer;
+  }
+
+  .menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #333; /* Change bar color as needed */
+  }
+}
+
+
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.logo-container {
+  margin-right: 20px;
+}
+
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #ccc; /* Placeholder color */
+  clip-path: polygon(0 0, 50% 50%, 0 100%, 100% 100%, 100% 0); /* Flag shape */
+  border: 1px solid #000;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  flex-grow: 1;
+  justify-content: space-around;
+}
+.nav-links.active {
+  display: flex;
+  flex-direction: column; /* Stack links vertically on smaller screens */
+  position: absolute;
+  top: 100%; /* Position below the navbar */
+  left: 0;
+  background-color: #f5f5f5; /* Match navbar background */
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links li {
+  margin: 0 10px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+  color: #007BFF; /* Optional hover color */
+}
+.hero {
+  width: 100%; /* Full width of the page */
+  height: 100vh; /* Full viewport height */
+  display: flex; /* Enables flexbox for content alignment */
+  align-items: center; /* Vertically centers content */
+  justify-content: center; /* Horizontally centers content */
+  background-repeat: no-repeat; /* Prevents background image repetition */
+  margin: 0; /* Removes default spacing */
+  padding: 0; /* Removes internal spacing */
+  box-sizing: border-box; /* Includes padding/borders in dimensions */
+  border-radius: 10px;
+  margin-top: 10px;
+  
+}
+
+/* Image inside .hero */
+.hero img {
+  width: 50%; /* Adjusts image width to 50% of its container */
+  height: auto; /* Maintains the aspect ratio */
+  max-width: 400px; /* Sets a maximum width for larger screens */
+  border-radius: 8px; /* Optional: Adds rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for aesthetics */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .hero img {
+    width: 70%; /* Adjusts image size for smaller devices */
+    max-width: 300px; /* Adjusts maximum width for smaller screens */
+  }
+}
+
+
+
+
+.about {
+  padding: 3rem 1rem;
+  background-color: transparent; /* Matches the page background */
+  text-align: center; /* Center-aligns the heading */
+}
+
+.about h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #333; /* Matches the overall theme */
+}
+
+.about-container {
+  display: flex;
+  justify-content: center; /* Centers the content */
+  align-items: center; /* Vertical alignment */
+  flex-wrap: wrap; /* Ensures wrapping on smaller screens */
+  gap: 1rem; /* Adds spacing between items */
+}
+
+.about-section {
+  max-width: 1100px; /* Restricts width for better readability */
+  background: rgba(255, 255, 255, 0.8); /* Slightly translucent card */
+  backdrop-filter: blur(5px); /* Subtle blur for elegance */
+  -webkit-backdrop-filter: blur(5px); /* Safari support */
+  padding: 1.5rem;
+  border-radius: 10px; /* Rounded corners for card style */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  color: #555; /* Neutral text color */
+  text-align: justify; /* Align text to both sides */
+  line-height: 1.6; /* Improves text spacing */
+}
+
+.about-section p {
+  margin-bottom: 1rem; /* Space between paragraphs */
+  font-size: 1.2rem;
+}
+
+.about-section p:last-child {
+  margin-bottom: 0; /* Remove unnecessary margin from the last paragraph */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .about h2 {
+    font-size: 2rem; /* Smaller heading for small screens */
+  }
+
+  .about-section {
+    padding: 1rem; /* Reduced padding for smaller screens */
+  }
+
+  .about-section p {
+    font-size: 1rem; /* Adjust paragraph size */
+  }
+}
+
+
+
+.features {
+  padding: 2rem 1rem;
+  background-color: transparent; /* Matches the page background */
+}
+
+.features h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #333; /* Matches the overall theme */
+}
+
+.features-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Spacing between features */
+  align-items: center; /* Center-aligns the feature cards */
+}
+
+.feature {
+  max-width: 1100px; /* Restricts width for better readability */
+  display: flex;
+  flex-wrap: wrap; /* Ensures responsiveness */
+  align-items: center;
+  gap: 1.5rem; /* Space between text and image */
+  padding: 1.5rem;
+  border-radius: 10px; /* Rounded corners for card style */
+  background: rgba(255, 255, 255, 0.8); /* Subtle background for contrast */
+  backdrop-filter: blur(5px); /* Slight glass effect for elegance */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+.feature:nth-child(odd) .feature-image {
+  order: 2; /* Flips the image position for odd features */
+}
+
+.feature:nth-child(even) .feature-image {
+  order: 1; /* Flips the image position for even features */
+}
+
+.feature-text {
+  flex: 1; /* Ensures text takes available space */
+}
+
+.feature-text h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+  color: #444; /* Neutral text color */
+  text-align: left;
+}
+
+.feature-text p {
+  font-size: 1.2rem;
+  color: #555; /* Slightly lighter text color */
+  line-height: 1.6; /* Improves text spacing */
+  text-align: justify; /* Aligns text neatly */
+}
+
+.feature-image {
+  flex: 0 0 300px;
+  max-width: 300px; /* Controls image size */
+}
+
+.feature-image img {
+  width: 100%;
+  border-radius: 10px; /* Matches card style */
+  object-fit: cover; /* Ensures image fits perfectly */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.feature-image img:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+
+
+
+@media (max-width: 768px) {
+  .hero {
+      height: 50vh; /* Adjusts height for smaller screens */
+  }
+}
+
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.contact h2{
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #333; /* Matches the overall theme */
+}
+.contact p{
+  font-size: 1.2rem;
+  color: #555; /* Slightly lighter text color */
+  line-height: 1.6; /* Improves text spacing */
+  text-align: justify; /* Aligns text neatly */
+  text-align: center;
+}
+.form-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9; /* Light gray background */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.styled-form {
+  display: flex;
+  flex-direction: column; /* Stack form elements vertically */
+  gap: 15px; /* Add space between form elements */
+}
+
+.styled-form label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #8f8f8f; /* Dark gray for text */
+}
+
+.styled-form input,
+.styled-form textarea {
+  width: 100%; /* Full width for inputs */
+  padding: 10px 15px; /* Add padding for a comfortable input area */
+  font-size: 14px;
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 5px; /* Rounded corners */
+  box-sizing: border-box; /* Includes padding in width calculation */
+  outline: none;
+  transition: border-color 0.3s ease; /* Smooth focus effect */
+}
+
+.styled-form input:focus,
+.styled-form textarea:focus {
+  border-color: #007bff; /* Blue border on focus */
+}
+
+.styled-form textarea {
+  resize: none; /* Prevent resizing of the text area */
+}
+
+.styled-form button {
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text */
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.styled-form button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+/* ... existing CSS code (excluding the provided media query) ... */
+
+@media (max-width: 768px) {
+  /* Navbar */
+  .navbar {
+    padding: 10px;
+    border-radius: 20px;
+  }
+
+  /* Hero Section */
+  .hero {
+    height: 50vh;
+    text-align: center; /* Center text on smaller screens */
+  }
+  .hero img {
+    width: 70%;
+    max-width: 300px;
+  }
+
+  /* About Section */
+  .about h2 {
+    font-size: 2rem;
+  }
+  .about-section {
+    padding: 1rem;
+  }
+  .about-section p {
+    font-size: 1rem;
+  }
+
+  /* Features Section */
+  .feature {
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center;
+  }
+  .feature-image {
+    flex: 0 0 auto; /* Allow image to take appropriate height */
+    max-width: 200px;
+    margin-bottom: 1rem; /* Add space below image */
+  }
+  .feature-text {
+    text-align: center;
+  }
+
+  /* Contact Section */
+  .contact h2 {
+    font-size: 2rem;
+  }
+  .form-container {
+    max-width: 90%; /* Make the form container more responsive */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Navbar */
+  .navbar {
+    padding: 5px;
+    border-radius: 15px;
+  }
+  .nav-links a{
+    font-weight: bold;
+    font-size: x-small;
+  }
+
+  /* Hero Section */
+  .hero img {
+    width: 80%;
+    max-width: 250px;
+  }
+
+  /* About Section */
+  .about h2 {
+    font-size: 1.8rem;
+  }
+  .about-section p {
+    font-size: 0.9rem;
+  }
+
+  /* Features Section */
+  .feature-image {
+    max-width: 180px;
+  }
+
+  /* Contact Section */
+  .contact h2 {
+    font-size: 1.8rem;
+  }
+}
+@media (max-width: 375px){
+  .nav-links a{
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    font-size: 0.5rem;
+  }
+}
