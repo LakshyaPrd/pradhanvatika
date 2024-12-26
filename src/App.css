@@ -5,10 +5,7 @@
   text-align: center;
 }
 
-/* CSS for the Gallery Section */
-/* Lightbox */
-/* Apply a blur effect to the background when lightbox is open */
-/* Main App container */
+
 .App {
   transition: filter 0.5s ease; /* Smooth transition for the blur effect */
 }
