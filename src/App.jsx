@@ -134,7 +134,7 @@ function App() {
                             <p>Experience the grandeur of Pradhan Vatika, where expansive lawns, spacious halls, and open-air pavilions provide ample room for your guests to mingle, dance, and create lasting memories. With a capacity to host up to 1500 guests, including a spacious banquet hall that can comfortably seat 300.</p>
                         </div>
                         <div className="feature-image">
-                            <img src="public/images/spacious-venue.JPG" alt="Spacious Venue" />
+                            <img src="/images/spacious-venue.JPG" alt="Spacious Venue" />
                         </div>
                     </div>
                     <div className="feature">
@@ -143,7 +143,7 @@ function App() {
                             <p>Experience unparalleled comfort with our premium services at Pradhan Vatika. We provide 8 elegantly appointed air-conditioned rooms, each a haven of tranquility. Each room boasts an attached bathroom with modern fixtures and a comfortable double bed adorned with luxurious linens, ensuring a restful and rejuvenating experience for your guests.</p>
                         </div>
                         <div className="feature-image">
-                            <img src="public/images/flexible-packages.JPG" alt="Convenient Location" />
+                            <img src="/images/flexible-packages.JPG" alt="Convenient Location" />
                             
                         </div>
                     </div>
@@ -153,7 +153,7 @@ function App() {
                             <p>We understand that every event is unique. That's why we offer a variety of flexible packages to suit different budgets, ensuring you get the best value for your investment.</p>
                         </div>
                         <div className="feature-image">
-                            <img src="public/images/premium-services.JPG" alt="Premium Services" />
+                            <img src="/images/premium-services.JPG" alt="Premium Services" />
                         </div>
                     </div>
                 </div>
